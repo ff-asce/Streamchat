@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s     # Pull metrics from targets every 5 seconds
+
+scrape_configs:
+  - job_name: "streamchat"
+    static_configs:
+      # host.docker.internal resolves to your laptop's IP from inside Docker.
+      # Port 9090 is where your FastAPI app's metrics endpoint is running.
+      - targets: ["192.168.1.2:9090"]

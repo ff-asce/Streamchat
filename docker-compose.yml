@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9091:9090"     # Expose Prometheus UI on port 9091 of your laptop
+    volumes:
+      # Mount your prometheus.yml config into the container
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    extra_hosts:
+      # This allows the Prometheus container to reach your laptop's localhost.
+      # Without this, "localhost" inside Docker means the container itself.
+      - "host.docker.internal:host-gateway"
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"     # Expose Grafana UI on port 3000 of your laptop
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin   # login password
+    depends_on:
+      - prometheus      # Start Prometheus before Grafana
