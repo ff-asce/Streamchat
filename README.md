@@ -14,8 +14,8 @@ A production-ready WebSocket-based chat server with streaming LLM responses, bui
 
 ```
 ┌─────────────┐     WebSocket      ┌──────────────┐     HTTP/SSE     ┌─────────────┐
-│   Client    │ ←─────────────────→ │   FastAPI    │ ←───────────────→ │    vLLM     │
-│ (test_client)│                    │    Server    │                  │   Server    │
+│   Client    │ ←─────────────────→│   FastAPI    │ ←───────────────→│    vLLM     │
+│(test_client)│                    │    Server    │                  │   Server    │
 └─────────────┘                    └──────────────┘                  └─────────────┘
                                            │
                                            │ Metrics (port 9090)
